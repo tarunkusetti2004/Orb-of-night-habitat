@@ -1,7 +1,7 @@
 ````markdown
 # 🌌 Orb of Night Habitat
 
-<img width="1853" height="914" alt="Project Banner" src="https://github.com/user-attachments/assets/0e5300b7-e965-45c0-bbac-1bf9ce308859" />](https://github.com/user-attachments/assets/0e5300b7-e965-45c0-bbac-1bf9ce308859)
+<img width="1853" height="914" alt="Project Banner" src="https://github.com/user-attachments/assets/0e5300b7-e965-45c0-bbac-1bf9ce308859" />
 
 > A futuristic 3D interactive habitat design created for **NASA Space Apps Challenge 2025**.  
 > Powered by **Three.js**, this project explores sustainable astronaut living spaces for long-term missions beyond Earth.
@@ -37,9 +37,9 @@ project-root/
 
 ## 🖼 Preview
 
-<img width="1857" height="719" alt="Preview 1" src="https://github.com/user-attachments/assets/d5930fcb-9abd-4c88-9a10-5a33c5f22391" />](https://github.com/user-attachments/assets/d5930fcb-9abd-4c88-9a10-5a33c5f22391)
+<img width="1857" height="719" alt="Preview 1" src="https://github.com/user-attachments/assets/d5930fcb-9abd-4c88-9a10-5a33c5f22391" />
 
-<img width="1647" height="920" alt="Preview 2" src="https://github.com/user-attachments/assets/164abcf7-0b68-4661-9572-a113f5abd1bc" />](https://github.com/user-attachments/assets/164abcf7-0b68-4661-9572-a113f5abd1bc)
+<img width="1647" height="920" alt="Preview 2" src="https://github.com/user-attachments/assets/164abcf7-0b68-4661-9572-a113f5abd1bc" />
 
 ---
 
