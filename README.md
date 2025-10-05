@@ -103,7 +103,7 @@ This project is licensed under the **MIT License** – see the [LICENSE](LICENSE
 ## 📬 Contact
 
 * 🌌 Project Team: Orb of Night Habitat
-* 📧 Email: [your-email@example.com](mailto:your-email@example.com)
-* 🌐 Website: [YourProjectWebsite.com](https://example.com)
+* 📧 Email: [your-email@example.com](mailto: tarunkusetti4002@gmail.com)
+* 🌐 Website: [YourProjectWebsite.com](https://tarunkusetti2004.github.io/Orb-of-night-habitat/)
 
 ---
