@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Habitat - Challenges</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    /* Futuristic Expandable Cards */
+    .challenge-card {
+      background: rgba(15, 15, 30, 0.9);
+      border: 1px solid #222;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .challenge-card h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #00eaff;
+      text-shadow: 0 0 8px #00eaff, 0 0 16px #0077ff;
+    }
+    .challenge-card p {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      margin-top: 10px;
+      color: #ddd;
+      line-height: 1.6;
+    }
+    .challenge-card.active {
+      border: 1px solid #00eaff;
+      box-shadow: 0 0 15px #00eaff;
+    }
+    .challenge-card.active p {
+      max-height: 500px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="challenges.html" class="active">Challenges</a>
+    <a href="layout.html">Layout Design</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero small-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="glow">⚠ Challenges in Space</h1>
+      <p>Overcoming obstacles to build sustainable homes beyond Earth.</p>
+    </div>
+  </header>
+
+  <!-- Challenges Section -->
+  <div class="container">
+    <h2 class="glow">🚀 Main Challenges</h2>
+
+    <div class="challenge-card">
+      <h2>☀ Radiation Protection</h2>
+      <p>
+        Space exposes astronauts to harmful cosmic rays and solar radiation. 
+        Unlike Earth, there’s no protective atmosphere or magnetic field. 
+        Solutions include thick shielding walls, underground habitats, or 
+        advanced materials like hydrogen-rich polymers. Without radiation protection, 
+        astronauts risk severe health issues such as cancer, organ damage, 
+        and impaired cognitive performance.
+      </p>
+    </div>
+
+    <div class="challenge-card">
+      <h2>🌱 Food & Water Sustainability</h2>
+      <p>
+        Long-term missions require closed-loop life support systems. 
+        Water recycling, hydroponics, and algae-based oxygen generation 
+        must all work in unison. Future habitats must be self-sufficient, 
+        minimizing resupply from Earth. Growing food in space not only 
+        provides nutrition but also psychological comfort for astronauts 
+        living in isolation.
+      </p>
+    </div>
+
+    <div class="challenge-card">
+      <h2>⚡ Reliable Energy Supply</h2>
+      <p>
+        Power is the lifeline of any habitat. Solar panels are effective 
+        near Earth but less so on Mars or shadowed regions of the Moon. 
+        Small-scale nuclear reactors or wireless energy transfer may be 
+        required. Balancing power generation with storage in batteries 
+        ensures critical systems like oxygen, heating, and communication 
+        never fail.
+      </p>
+    </div>
+
+    <div class="challenge-card">
+      <h2>🏗 Construction Materials</h2>
+      <p>
+        Launching heavy materials from Earth is too costly. Future habitats 
+        must use in-situ resources like lunar regolith or Martian soil 
+        (ISRU: In-Situ Resource Utilization). 3D printing structures on-site 
+        can reduce costs and increase flexibility. Strong but lightweight 
+        materials will be the backbone of future space construction.
+      </p>
+    </div>
+
+    <div class="challenge-card">
+      <h2>👩‍🚀 Human Health & Psychology</h2>
+      <p>
+        Microgravity weakens muscles and bones, requiring daily exercise 
+        regimens. Radiation increases cancer risks. Isolation and confinement 
+        affect mental health, leading to stress, depression, or team conflicts. 
+        Virtual reality, AI companions, and better medical technologies are 
+        being explored to ensure astronaut well-being on long missions.
+      </p>
+    </div>
+
+    <div class="challenge-card">
+      <h2>🛰 Autonomy & Communication</h2>
+      <p>
+        Space habitats must be highly autonomous since resupply from Earth 
+        is slow and expensive. Communication delays (up to 20 minutes with Mars) 
+        mean astronauts can’t rely on real-time guidance. AI-driven monitoring 
+        systems, automated repairs, and independent decision-making are 
+        critical for survival.
+      </p>
+    </div>
+  </div>
+
+  <!-- Script for Expandable Cards -->
+  <script>
+    const cards = document.querySelectorAll('.challenge-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

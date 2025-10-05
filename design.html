@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Space Habitat Designer - Advanced 3D Creator</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="starfield" id="starfield"></div>
+    <div class="nebula-bg"></div>
+    
+    <nav class="top-nav">
+        <div class="brand">
+            <div class="brand-icon">⬢</div>
+            <div class="brand-text">
+                <div class="brand-name">NEXUS</div>
+                <div class="brand-sub">Space Habitat Designer v3.0</div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" id="fullscreen-btn" title="Toggle Fullscreen">⛶</button>
+            <button class="nav-btn" id="settings-btn" title="Settings">⚙</button>
+        </div>
+    </nav>
+
+    <aside class="control-panel" id="controls">
+        <div class="panel-header">
+            <h2>Mission Control</h2>
+            <button class="collapse-btn" id="collapse-panel">‹</button>
+        </div>
+        
+        <div class="control-section">
+            <h3>Habitat Configuration</h3>
+            
+            <div class="control-group glass-panel">
+                <label for="shape">
+                    <span class="label-icon">◊</span>
+                    Habitat Architecture
+                </label>
+                <div class="select-wrapper">
+                    <select id="shape">
+                        <option value="cylinder">⬛ Cylinder Module</option>
+                        <option value="dome" selected>◉ Dome Structure</option>
+                        <option value="inflatable">◈ Inflatable Habitat</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group glass-panel">
+                <label for="radius">
+                    <span class="label-icon">⬢</span>
+                    Radius <span class="unit">meters</span>
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" id="radius" min="3" max="15" value="10" step="0.5">
+                    <div class="range-track"></div>
+                    <div class="range-thumb"></div>
+                </div>
+                <div class="range-value" id="radius-value">10.0 m</div>
+            </div>
+
+            <div class="control-group glass-panel">
+                <label for="height">
+                    <span class="label-icon">⬆</span>
+                    Height <span class="unit">meters</span>
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" id="height" min="3" max="20" value="15" step="0.5">
+                    <div class="range-track"></div>
+                    <div class="range-thumb"></div>
+                </div>
+                <div class="range-value" id="height-value">15.0 m</div>
+            </div>
+
+            <div class="control-group glass-panel">
+                <label for="crew">
+                    <span class="label-icon">👥</span>
+                    Crew Capacity
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" id="crew" min="1" max="12" value="8" step="1">
+                    <div class="range-track"></div>
+                    <div class="range-thumb"></div>
+                </div>
+                <div class="range-value" id="crew-value">8 astronauts</div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h3>Zone Management</h3>
+            
+            <div class="control-group glass-panel">
+                <label>
+                    <span class="label-icon">⬟</span>
+                    Add Functional Zone
+                </label>
+                <div class="zone-creation">
+                    <div class="select-wrapper">
+                        <select id="zone-type">
+                            <option value="sleeping">🛏️ Sleeping Quarters</option>
+                            <option value="bathroom">🚿 Bathroom/Hygiene</option>
+                            <option value="storage">📦 Storage Area</option>
+                            <option value="exercise">🏃 Exercise Area</option>
+                            <option value="workstation">💻 Workstation</option>
+                            <option value="kitchen">🍽️ Kitchen/Dining</option>
+                            <option value="airlock">🚪 Airlock</option>
+                            <option value="medical">⚕️ Medical Bay</option>
+                        </select>
+                    </div>
+                    <button class="primary-btn pulse-btn" id="add-zone-btn">
+                        <span class="btn-icon">+</span>
+                        Deploy Zone
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-group glass-panel">
+                <label>
+                    <span class="label-icon">📍</span>
+                    Active Zones
+                </label>
+                <div class="zones-container">
+                    <div id="zones-list" class="zones-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section" id="zone-editor" style="display: none;">
+            <h3>Zone Editor</h3>
+            
+            <div class="control-group glass-panel">
+                <div class="zone-editor-header">
+                    <label>
+                        <span class="label-icon">⚙️</span>
+                        <span id="selected-zone-name">No Zone Selected</span>
+                    </label>
+                    <button class="close-editor-btn" id="close-editor">×</button>
+                </div>
+                
+                <div class="editor-tabs">
+                    <button class="tab-btn active" data-tab="transform">Transform</button>
+                    <button class="tab-btn" data-tab="properties">Properties</button>
+                    <button class="tab-btn" data-tab="advanced">Advanced</button>
+                </div>
+                
+                <div class="tab-content" id="transform-tab">
+                    <div class="editor-row">
+                        <label>Position</label>
+                        <div class="vector-input">
+                            <div class="input-group">
+                                <span class="axis-label">X</span>
+                                <input type="number" id="zone-pos-x" step="0.1" min="-15" max="15">
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Y</span>
+                                <input type="number" id="zone-pos-y" step="0.1" min="0.5" max="10" value="1">
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Z</span>
+                                <input type="number" id="zone-pos-z" step="0.1" min="-15" max="15">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Rotation</label>
+                        <div class="vector-input">
+                            <div class="input-group">
+                                <span class="axis-label">X</span>
+                                <input type="range" id="zone-rot-x" min="0" max="360" value="0">
+                                <span class="value-display" id="rot-x-value">0°</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Y</span>
+                                <input type="range" id="zone-rot-y" min="0" max="360" value="0">
+                                <span class="value-display" id="rot-y-value">0°</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Z</span>
+                                <input type="range" id="zone-rot-z" min="0" max="360" value="0">
+                                <span class="value-display" id="rot-z-value">0°</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Scale</label>
+                        <div class="scale-controls">
+                            <div class="input-group">
+                                <span class="axis-label">Uniform</span>
+                                <input type="range" id="zone-scale" min="0.5" max="3" step="0.1" value="1">
+                                <span class="value-display" id="scale-value">1.0x</span>
+                            </div>
+                            <button class="lock-btn" id="lock-scale" title="Lock uniform scaling">🔒</button>
+                        </div>
+                        <div class="vector-input" id="individual-scale" style="display: none;">
+                            <div class="input-group">
+                                <span class="axis-label">X</span>
+                                <input type="range" id="zone-scale-x" min="0.5" max="3" step="0.1" value="1">
+                                <span class="value-display" id="scale-x-value">1.0</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Y</span>
+                                <input type="range" id="zone-scale-y" min="0.5" max="3" step="0.1" value="1">
+                                <span class="value-display" id="scale-y-value">1.0</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="axis-label">Z</span>
+                                <input type="range" id="zone-scale-z" min="0.5" max="3" step="0.1" value="1">
+                                <span class="value-display" id="scale-z-value">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="properties-tab" style="display: none;">
+                    <div class="editor-row">
+                        <label>Zone Type</label>
+                        <select id="zone-type-edit">
+                            <option value="sleeping">🛏️ Sleeping Quarters</option>
+                            <option value="bathroom">🚿 Bathroom/Hygiene</option>
+                            <option value="storage">📦 Storage Area</option>
+                            <option value="exercise">🏃 Exercise Area</option>
+                            <option value="workstation">💻 Workstation</option>
+                            <option value="kitchen">🍽️ Kitchen/Dining</option>
+                            <option value="airlock">🚪 Airlock</option>
+                            <option value="medical">⚕️ Medical Bay</option>
+                        </select>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Dimensions</label>
+                        <div class="dimension-input">
+                            <div class="input-group">
+                                <span class="dim-label">Width</span>
+                                <input type="number" id="zone-width" step="0.1" min="0.5" max="10" value="2">
+                                <span class="unit">m</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="dim-label">Height</span>
+                                <input type="number" id="zone-height" step="0.1" min="0.5" max="10" value="2">
+                                <span class="unit">m</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="dim-label">Depth</span>
+                                <input type="number" id="zone-depth" step="0.1" min="0.5" max="10" value="2">
+                                <span class="unit">m</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Calculated Values</label>
+                        <div class="calculated-values">
+                            <div class="calc-item">
+                                <span class="calc-label">Volume:</span>
+                                <span class="calc-value" id="zone-volume">8.0 m³</span>
+                            </div>
+                            <div class="calc-item">
+                                <span class="calc-label">Floor Area:</span>
+                                <span class="calc-value" id="zone-area">4.0 m²</span>
+                            </div>
+                            <div class="calc-item">
+                                <span class="calc-label">Surface Area:</span>
+                                <span class="calc-value" id="zone-surface">24.0 m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="advanced-tab" style="display: none;">
+                    <div class="editor-row">
+                        <label>Zone Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="zone-color" value="#00a8ff">
+                            <button class="preset-color" data-color="#00a8ff" style="background: #00a8ff;"></button>
+                            <button class="preset-color" data-color="#ff6b6b" style="background: #ff6b6b;"></button>
+                            <button class="preset-color" data-color="#4ecdc4" style="background: #4ecdc4;"></button>
+                            <button class="preset-color" data-color="#45b7d1" style="background: #45b7d1;"></button>
+                            <button class="preset-color" data-color="#f9ca24" style="background: #f9ca24;"></button>
+                            <button class="preset-color" data-color="#6c5ce7" style="background: #6c5ce7;"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Zone Shape</label>
+                        <select id="zone-shape">
+                            <option value="box">📦 Box/Rectangular</option>
+                            <option value="cylinder">🗜️ Cylindrical</option>
+                            <option value="sphere">⚪ Spherical</option>
+                        </select>
+                    </div>
+                    
+                    <div class="editor-row">
+                        <label>Material Properties</label>
+                        <div class="material-controls">
+                            <div class="input-group">
+                                <span class="prop-label">Opacity</span>
+                                <input type="range" id="zone-opacity" min="0.1" max="1" step="0.1" value="0.9">
+                                <span class="value-display" id="opacity-value">90%</span>
+                            </div>
+                            <div class="input-group">
+                                <span class="prop-label">Glow</span>
+                                <input type="range" id="zone-glow" min="0" max="2" step="0.1" value="1">
+                                <span class="value-display" id="glow-value">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="editor-actions">
+                    <button class="primary-btn" id="apply-changes">Apply Changes</button>
+                    <button class="action-btn" id="reset-zone">Reset Zone</button>
+                </div>
+        </div>
+
+        <div class="control-section">
+            <h3>Mission Operations</h3>
+            
+            <div class="action-buttons">
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+                <button class="action-btn" id="import-btn">
+                    <span class="btn-icon">📤</span>
+                    Import Layout
+                </button>
+                <button class="action-btn" id="export-btn">
+                    <span class="btn-icon">📥</span>
+                    Export Layout
+                </button>
+                <button class="action-btn crew-btn" id="toggle-crew-btn">
+                    <span class="btn-icon">👥</span>
+                    Toggle Crew
+                </button>
+                <button class="action-btn danger-btn" id="reset-btn">
+                    <span class="btn-icon">🔄</span>
+                    Reset Habitat
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="viewport" id="canvas-container">
+        <div class="hud-overlay">
+            <div class="status-panel glass-panel" id="info">
+                <h4>Habitat Metrics</h4>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-icon">⬢</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Volume</span>
+                            <span class="metric-value" id="volume">0 m³</span>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-icon">⬜</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Floor Area</span>
+                            <span class="metric-value" id="floor-area">0 m²</span>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-icon">👤</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Per Astronaut</span>
+                            <span class="metric-value" id="per-astronaut">0 m³</span>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-icon">📍</div>
+                        <div class="metric-content">
+                            <span class="metric-label">Active Zones</span>
+                            <span class="metric-value" id="zones-count">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interaction-hints">
+                <div class="hint-item">
+                    <span class="hint-icon">🖱️</span>
+                    <span class="hint-text">Drag zones to reposition</span>
+                </div>
+                <div class="hint-item">
+                    <span class="hint-icon">⚡</span>
+                    <span class="hint-text">Right-click for context menu</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feedback-system">
+            <div id="placement-feedback" class="placement-feedback"></div>
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Initializing Space Environment...</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="floating-controls">
+        <button class="float-btn" id="view-preset-1" title="Orbital View">🌍</button>
+        <button class="float-btn" id="view-preset-2" title="Interior View">🏠</button>
+        <button class="float-btn" id="view-preset-3" title="Construction View">🔧</button>
+        <button class="float-btn" id="screenshot-btn" title="Capture Screenshot">📸</button>
+    </div>
+
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

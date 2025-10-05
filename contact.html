@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Orb of Night Habitat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Fallback styles if not in style.css */
+    body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+    nav { display: flex; gap: 20px; padding: 20px; position: fixed; width: 100%; background: rgba(0,0,0,0.5); z-index: 100; }
+    nav a { color: #0ff; text-decoration: none; font-weight: bold; }
+    nav a.active { text-shadow: 0 0 10px #0ff; }
+
+    .stars, .stars2, .stars3 {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: block;
+      background: transparent; z-index: -1;
+    }
+    .stars { background: url('stars1.png') repeat; animation: animateStars 100s linear infinite; }
+    .stars2 { background: url('stars2.png') repeat; animation: animateStars 150s linear infinite; }
+    .stars3 { background: url('stars3.png') repeat; animation: animateStars 200s linear infinite; }
+    @keyframes animateStars { from {background-position:0 0;} to {background-position:-10000px 5000px;} }
+
+    .contact-section { display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative; padding: 60px 20px; }
+    .overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,20,0.6); z-index:0; }
+
+    .contact-container { position: relative; z-index: 1; max-width: 500px; width: 100%; text-align: center; color: #0ff; animation: floatCard 4s ease-in-out infinite alternate; }
+    .contact-container h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; margin-bottom: 10px; }
+    .contact-container p { margin-bottom: 20px; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 15px; }
+    .contact-form input, .contact-form textarea { padding: 15px; border-radius: 10px; border: none; outline: none; font-size: 1rem; }
+    .contact-form input { background: rgba(0,0,30,0.8); color: #0ff; }
+    .contact-form textarea { background: rgba(0,0,30,0.8); color: #0ff; resize: none; }
+
+    .glow-button { padding: 15px; border:none; border-radius: 10px; background: #0ff; color: #000; font-weight: bold; cursor: pointer; box-shadow: 0 0 20px #0ff, 0 0 40px #0ff; transition: 0.3s; }
+    .glow-button:hover { box-shadow: 0 0 30px #0ff, 0 0 60px #0ff; transform: translateY(-3px); }
+
+    @keyframes floatCard { 0% { transform: translateY(0); } 100% { transform: translateY(-15px); } }
+
+    footer { text-align: center; padding: 20px; color: #0ff; text-shadow: 0 0 10px #0ff; background: rgba(0,0,20,0.8); position: relative; z-index: 1; }
+    footer a { color: #0ff; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- Starfield Layers -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="challenges.html">Challenges</a>
+    <a href="layout.html">Layout Design</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="overlay"></div>
+    <div class="contact-container">
+      <h1 class="glow">🌌 Get in Touch</h1>
+      <p>Have questions about the Orb of Night Habitat? Reach out to our team below.</p>
+
+      <form class="contact-form">
+        <input type="text" name="name" placeholder="👤 Your Name" required>
+        <input type="email" name="email" placeholder="📧 Your Email" required>
+        <textarea name="message" placeholder="💬 Your Message" rows="6" required></textarea>
+        <button type="submit" class="glow-button">🚀 Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>🌌 Orb of Night Habitat | NASA Space Apps Challenge 2025</p>
+    <p>Back to <a href="index.html">Home</a></p>
+  </footer>
+
+  <!-- EmailJS Script -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init("QH_aVzmh9dsVWFfPo"); // Your Public Key
+
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_xc9dvcb', 'template_cfprvom', this)
+        .then(() => {
+          alert('🚀 Message sent successfully!');
+          this.reset();
+        })
+        .catch(() => {
+          alert('❌ Error sending message. Please try again.');
+        });
+    });
+  </script>
+</body>
+</html>

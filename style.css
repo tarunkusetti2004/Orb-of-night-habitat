@@ -1,0 +1,294 @@
+/* ---------------- GLOBAL ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ---------------- NAVIGATION ---------------- */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav a {
+  color: #9be3ff;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #00eaff;
+  text-shadow: 0 0 8px #00eaff, 0 0 20px #00eaff;
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('https://www.nasa.gov/wp-content/uploads/2023/03/iss070e005698orig.jpg') 
+              no-repeat center center/cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 5, 20, 0.75);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.2rem;
+  margin-bottom: 1rem;
+}
+
+.glow {
+  color: #fff;
+  text-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff, 0 0 60px #0077ff;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero button {
+  background: transparent;
+  border: 2px solid #00eaff;
+  color: #00eaff;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hero button:hover {
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff;
+}
+
+/* Decorative wave divider under hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url('https://svgur.com/i/uay.svg') no-repeat center bottom;
+  background-size: cover;
+  z-index: 2;
+}
+
+/* ---------------- PLANETS ---------------- */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.planet1 {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #00eaff, #003d66);
+  top: 10%;
+  left: 8%;
+  box-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+}
+
+.planet2 {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, #ff00cc, #330033);
+  bottom: 15%;
+  right: 12%;
+  box-shadow: 0 0 20px #ff00cc, 0 0 40px #ff00cc;
+}
+
+.planet3 {
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, #ffaa00, #663300);
+  top: 20%;
+  right: 20%;
+  box-shadow: 0 0 20px #ffaa00, 0 0 40px #ffaa00;
+}
+
+/* ---------------- INFO CARDS ---------------- */
+.container {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2.5rem;
+}
+
+.info-card {
+  background: rgba(0, 0, 20, 0.8);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 234, 255, 0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s forwards;
+}
+
+.info-card:nth-child(1) { animation-delay: 0.2s; }
+.info-card:nth-child(2) { animation-delay: 0.4s; }
+.info-card:nth-child(3) { animation-delay: 0.6s; }
+
+.info-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px #00eaff, 0 0 50px #00eaff;
+}
+
+.info-card h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #00eaff;
+  margin-bottom: 1rem;
+}
+
+.info-card p, 
+.info-card ul {
+  font-size: 1rem;
+  color: #e0f7ff;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  font-size: 0.9rem;
+  color: #9be3ff;
+}
+
+footer a {
+  color: #00eaff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+/* ---------------- CONTACT PAGE ---------------- */
+.contact-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.contact-container {
+  position: relative;
+  background: rgba(0, 0, 20, 0.85);
+  padding: 3rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+  z-index: 2;
+}
+
+.contact-container h1 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.contact-container p {
+  margin-bottom: 2rem;
+  color: #9be3ff;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(0, 0, 30, 0.7);
+  border: 1px solid #00eaff;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+}
+
+.contact-form button {
+  background: transparent;
+  border: 2px solid #00eaff;
+  color: #00eaff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.contact-form button:hover {
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+}

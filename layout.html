@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Habitat - Layout</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Blueprint Background */
+    body {
+      background: radial-gradient(circle at center, #050d1a, #000);
+      background-size: cover;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero.small-hero {
+      position: relative;
+      height: 50vh;
+      background: url('https://images.pexels.com/photos/821644/pexels-photo-821644.jpeg') repeat; /* futuristic blueprint grid */
+      background-size: 400px 400px;
+      animation: blueprintMove 20s linear infinite; /* animate background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Animate grid movement */
+    @keyframes blueprintMove {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    .hero.small-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 10, 30, 0.7); /* dark overlay */
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #00aaff, 0 0 30px #0077ff;
+      color: #00eaff;
+    }
+
+    .hero-content p {
+      color: #ddd;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* Futuristic Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .layout-card {
+      background: rgba(15, 15, 35, 0.85);
+      border: 1px solid #00eaff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .layout-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 25px #00eaff, 0 0 40px #0077ff;
+    }
+    .layout-card h3 {
+      color: #00eaff;
+      margin-bottom: 10px;
+    }
+    .layout-card p {
+      color: #ccc;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="challenges.html">Challenges</a>
+    <a href="layout.html" class="active">Layout Design</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero small-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>🏗 Habitat Layout</h1>
+      <p>A futuristic blueprint for sustainable space living</p>
+      <button><a style="text-decoration: none;  color: #00eaff;" href="design.html">Design</a></button>
+    </div>
+  </header>
+
+  <!-- Layout Content -->
+  <div class="container">
+    <h2 class="glow">🔹 Blueprint Overview</h2>
+    <div class="card-grid">
+      <div class="layout-card">
+        <h3>🏠 Living Quarters</h3>
+        <p>Private sleeping pods, recreation zones, and personal care areas. Designed to ensure rest, privacy, and comfort for astronauts on long missions.</p>
+      </div>
+      <div class="layout-card">
+        <h3>🔬 Laboratories</h3>
+        <p>Research hubs for experiments in biology, physics, and medicine. Includes an advanced medical bay for emergency treatments in microgravity.</p>
+      </div>
+      <div class="layout-card">
+        <h3>🌱 Greenhouses</h3>
+        <p>Hydroponic and aeroponic farms to grow food and recycle oxygen. Green zones also help reduce stress and improve mental health for crews.</p>
+      </div>
+      <div class="layout-card">
+        <h3>⚙ Engineering Bay</h3>
+        <p>A workshop for 3D printing spare parts, repairing systems, and maintaining life support technologies. Ensures autonomy in case of failures.</p>
+      </div>
+      <div class="layout-card">
+        <h3>🛰 Command Center</h3>
+        <p>The "brain" of the habitat. Monitors navigation, communication, AI support, and critical system status, ensuring mission safety.</p>
+      </div>
+      <div class="layout-card">
+        <h3>💧 Life Support</h3>
+        <p>Manages closed-loop air, water, and waste recycling systems. Equipped with emergency reserves and monitoring sensors for redundancy.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
