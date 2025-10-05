@@ -1,7 +1,7 @@
 ````markdown
 # 🌌 Orb of Night Habitat
 
-<img width="1852" height="911" alt="image" src="https://github.com/user-attachments/assets/f364a085-03ef-4424-baa4-ee43d93f2922" />
+
 
 > A futuristic 3D interactive habitat design created for **NASA Space Apps Challenge 2025**.  
 > Powered by **Three.js**, this project explores sustainable astronaut living spaces for long-term missions beyond Earth.
